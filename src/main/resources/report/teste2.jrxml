@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="eaca70e9-0a60-4c87-9458-34f16132ba13">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1"/>
+	<field name="razao_social" class="java.lang.String">
+		<fieldDescription><![CDATA[razao_social]]></fieldDescription>
+	</field>
+	<field name="cnpj" class="java.lang.Number"/>
+	<field name="nome_fantasia" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="15" width="166" height="46" uuid="1cf8f1e5-5fe0-4b8a-b179-dec474a7836d"/>
+				<textElement>
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Teste 1]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="4" width="100" height="20" uuid="02d7dc9e-0e6c-4ca8-8cd6-b8ae80f88bb8"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="4" width="100" height="20" uuid="e80f3af6-fbdd-4a1d-9020-e077ab0d9076"/>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="4" width="100" height="20" uuid="83abca58-4190-4174-b6f0-f4045a5ba2ba"/>
+				<text><![CDATA[Fantasia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="230" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="0" width="100" height="20" uuid="dbaf68c6-edd3-4bb4-aaa0-4388a627818f"/>
+				<textFieldExpression><![CDATA[$F{razao_social}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="0" width="100" height="20" uuid="51aa8386-11d4-424e-92a7-198b48d75abd"/>
+				<textFieldExpression><![CDATA[$F{cnpj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="0" width="100" height="20" uuid="6fb8a8e8-49d2-4da1-9959-f58c063eb755"/>
+				<textFieldExpression><![CDATA[$F{nome_fantasia}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement style="style1" stretchType="RelativeToTallestObject" x="261" y="21" width="200" height="50" uuid="a57cfdb4-b642-4d49-aa48-6e14721e829c"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="true" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<componentElement>
+				<reportElement x="33" y="30" width="200" height="200" uuid="2f87bda6-44e6-4c6a-aa0e-3e783d6bf3c7"/>
+				<mp:map xmlns:mp="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<mp:latitudeExpression><![CDATA[37.7750f]]></mp:latitudeExpression>
+					<mp:longitudeExpression><![CDATA[-122.4183f]]></mp:longitudeExpression>
+				</mp:map>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="431" y="0" width="80" height="20" uuid="5338cec3-3455-4957-ad47-9713a1b550df"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="511" y="0" width="40" height="20" uuid="6dfe5ac3-cf70-4fe8-b03a-8406047541b5"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="47" splitType="Stretch"/>
+	</summary>
+</jasperReport>
