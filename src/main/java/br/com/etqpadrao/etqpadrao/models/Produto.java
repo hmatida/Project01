@@ -1,5 +1,8 @@
 package br.com.etqpadrao.etqpadrao.models;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,6 +23,7 @@ public class Produto {
     private double tara_total;
     private long numero_caixa;
     private int validade;
+    private String etq_layout;
 
     @ManyToOne
     @JoinColumn(name="id_cliente", referencedColumnName = "id_cliente")
@@ -126,5 +130,13 @@ public class Produto {
 
     public void setPassaDados(List<PassaDados> passaDados) {
         this.passaDados = passaDados;
+    }
+
+    public String getEtq_layout() {
+        return etq_layout;
+    }
+
+    public void setEtq_layout(String etq_layout) {
+        this.etq_layout = etq_layout;
     }
 }

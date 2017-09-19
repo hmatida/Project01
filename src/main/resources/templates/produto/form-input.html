@@ -23,7 +23,7 @@
 <body>
 
     <div class="container">
-        <form method="post" action="/produto">
+        <form method="post" action="/produto" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Cliente</label>
                         <select class="form-control" id="exampleFormControlSelect2" name="cliente">
@@ -65,6 +65,15 @@
 
                         </div>
                         <div class="col-lg-4">
+
+                        <!--Testes de evnio de arquivo-->
+                            <div class="form-group">
+                                <label>Enviar arquivo de etiqueta</label>
+                                <input type="file" class="form-control" id="etq_layout"
+                                       name="file" value="upload"/>
+                            </div>
+                        <!--/Testes de evnio de arquivo-->
+
                             <div class="form-group">
                                 <label>Tara embalagem</label>
                                 <input type="number" step="0.001" class="form-control" id="tara_emb"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="etiqueta_bompeixe" language="groovy" pageWidth="294" pageHeight="439" columnWidth="284" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="36fe4ecb-ed87-4f0e-8c57-980619b26c5e">
-	<property name="ireport.layers" value="##Wed Sep 13 10:51:59 AMT 2017\nlayer.2.visible=true\nlayer.1.name=Layer 1\nlayer.0.visible=true\nlayer.2.id=2\nlayer.2.name=Layer 2\nlayer.1.id=1\nlayer.1.visible=false\nlayer.0.id=0\nlayer.0.name=Background"/>
+	<property name="ireport.layers" value="##Wed Sep 13 16:06:03 AMT 2017\nlayer.2.visible=true\nlayer.1.name=Layer 1\nlayer.0.visible=true\nlayer.2.id=2\nlayer.2.name=Layer 2\nlayer.1.id=1\nlayer.1.visible=true\nlayer.0.id=0\nlayer.0.name=Background"/>
 	<property name="ireport.zoom" value="2.200000000000001"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="146"/>
+	<property name="ireport.y" value="0"/>
 	<style name="texto padrão" hAlign="Center" vAlign="Middle" fontName="Arial" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 	<field name="cod3" class="java.lang.String"/>
 	<field name="produto.nome_produto" class="java.lang.String"/>
@@ -118,6 +118,12 @@
 				<reportElement style="texto padrão" x="2" y="158" width="281" height="20" uuid="d22d2f24-f56e-4704-b84a-66b03ec3b415"/>
 				<textFieldExpression><![CDATA[$F{produto.peso_liquido}]]></textFieldExpression>
 			</textField>
+			<componentElement>
+				<reportElement x="33" y="256" width="200" height="50" uuid="efd5b768-df7f-4b7d-bf26-2262ccadc588"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128B" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{cod3}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
 		</band>
 	</detail>
 </jasperReport>

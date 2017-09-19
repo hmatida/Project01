@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 @Controller
-@RequestMapping("/etiqueta")
+@RequestMapping("/gera_etq")
 public class GeraEtiquetaController {
 
     @Autowired

@@ -39,6 +39,9 @@ public class DataLote {
             letra_lote = "L";
         }
         dia_producao=Integer.toString(data.get(Calendar.DAY_OF_MONTH));
+        if (dia_producao.length()!=2){
+            dia_producao="0"+dia_producao;
+        }
         String ano = Integer.toString(data.get(Calendar.YEAR));
         char [] charArray=ano.toCharArray();
         ano=""+charArray[charArray.length-1];
