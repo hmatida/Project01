@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:replace="/fragments/fragment_1 :: head">
+</head>
+<body>
+<div th:replace="/fragments/fragment_1 :: menu">
+</div>
+<div class="container-fluid">
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+        Lista de usuários
+    </h3>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <table class="table table-sm table-hover">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Login</th>
+                    <th>E-mail</th>
+                    <th>Status</th>
+                    <th>Nível</th>
+                    <th>Opções</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each = "us : ${usuarios}">
+                    <td th:text="${us.nome}"/>
+                    <td th:text="${us.login}"/>
+                    <td th:text="${us.email}"/>
+                    <td th:text="${us.aprovado}"/>
+                    <td th:text="${us.cat_usuario.nome}"></td>
+                    <td>
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-sm btn-outline-warning"
+                               th:href="@{/usuario/edit/{id}(id=${us.id})}" >Editar</a>
+                        </div>
+                        <div class="btn-group pull-right">
+                            <a class="btn btn-sm btn-outline-danger"
+                               th:href="@{/usuario/edit-senha/{id}(id=${us.id})}" >Edita senha</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+</body>
+</html>

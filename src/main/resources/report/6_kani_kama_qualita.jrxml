@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="etiqueta_bompeixe" language="groovy" pageWidth="294" pageHeight="439" columnWidth="284" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="36fe4ecb-ed87-4f0e-8c57-980619b26c5e">
+	<property name="ireport.layers" value="##Wed Sep 13 16:06:03 AMT 2017\nlayer.2.visible=true\nlayer.1.name=Layer 1\nlayer.0.visible=true\nlayer.2.id=2\nlayer.2.name=Layer 2\nlayer.1.id=1\nlayer.1.visible=true\nlayer.0.id=0\nlayer.0.name=Background"/>
+	<property name="ireport.zoom" value="2.200000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="texto padrão" hAlign="Center" vAlign="Middle" fontName="Arial" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<field name="cod3" class="java.lang.String"/>
+	<field name="produto.nome_produto" class="java.lang.String"/>
+	<field name="produto.cliente.razao_social" class="java.lang.String"/>
+	<field name="lote" class="java.lang.String"/>
+	<field name="produto.cliente.empresa.razao_social" class="java.lang.String"/>
+	<field name="fab_string" class="java.lang.String"/>
+	<field name="val_string" class="java.lang.String"/>
+	<field name="produto.peso_liquido" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="429" splitType="Stretch">
+			<staticText>
+				<reportElement style="texto padrão" x="140" y="58" width="143" height="20" uuid="3681a877-e539-4422-8840-2e02bed2d030"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Fabricação]]></text>
+			</staticText>
+			<line>
+				<reportElement x="139" y="58" width="1" height="79" uuid="655a6505-3baf-4cd8-a95e-ad1dfeb6b905"/>
+			</line>
+			<line>
+				<reportElement x="0" y="97" width="284" height="1" uuid="3fc41ae2-2f7d-4771-8e4d-b519bdde18c5"/>
+			</line>
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="284" height="429" uuid="86346cab-b527-41e2-829a-ccc5873368d8">
+					<property name="ireport.layer" value="1"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="29" width="284" height="1" uuid="f9cde708-1520-4593-ba2e-e3e8147bdcd4"/>
+			</line>
+			<line>
+				<reportElement x="-1" y="57" width="284" height="1" uuid="ac49ecc7-6bd9-4acf-bba9-930c852eb556"/>
+			</line>
+			<staticText>
+				<reportElement style="texto padrão" x="0" y="58" width="140" height="20" uuid="4b128972-a817-49c8-aac1-0cf1f9a65ee4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Validade]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement style="texto padrão" stretchType="RelativeToBandHeight" mode="Opaque" x="7" y="327" width="270" height="69" uuid="d578fb30-cea7-4d53-8ef9-547d93b23f5c"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false" barWidth="0">
+					<jr:codeExpression><![CDATA[$F{cod3}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="1" y="388" width="282" height="20" uuid="9f4e49c4-1fec-4733-ad88-a6b04a089f2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cod3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="texto padrão" x="140" y="97" width="143" height="20" uuid="9ada2e06-7a28-40bf-808d-0e43d7178f01"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Produto]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="texto padrão" x="139" y="117" width="144" height="20" uuid="cb1c335e-68e5-48ed-9e2b-882427b5f43c"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto.nome_produto}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="137" width="284" height="1" uuid="59a362e9-6ff5-472b-bc06-8d038fa78494"/>
+			</line>
+			<textField>
+				<reportElement style="texto padrão" x="1" y="30" width="282" height="27" uuid="ce694384-c098-4db9-a046-225ad2104667"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto.cliente.razao_social}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="texto padrão" x="1" y="98" width="138" height="20" uuid="00a39391-47ec-4a5a-aff8-8bae39bf08c7"/>
+				<text><![CDATA[Lote]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="texto padrão" x="1" y="117" width="138" height="20" uuid="5b5edf74-5057-4a38-a1a2-33e9eb9702f3"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lote}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="texto padrão" x="-1" y="0" width="285" height="29" uuid="4b7dbe66-effb-48aa-9faf-78b266266b60"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto.cliente.empresa.razao_social}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="texto padrão" x="140" y="77" width="143" height="20" uuid="71e8a1c5-703a-4999-a100-f645a71cef9b"/>
+				<textFieldExpression><![CDATA[$F{fab_string}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="texto padrão" x="2" y="77" width="137" height="20" uuid="c25d1768-5daa-4595-ac37-d21c8237301d"/>
+				<textFieldExpression><![CDATA[$F{val_string}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="177" width="284" height="1" uuid="ddb4d9d5-690e-4d5f-8447-668009923562"/>
+			</line>
+			<staticText>
+				<reportElement style="texto padrão" x="2" y="138" width="281" height="20" uuid="554b9092-c4c1-4f1a-98ca-ae445c6a2191"/>
+				<text><![CDATA[Peso Líquido]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement style="texto padrão" x="2" y="158" width="281" height="20" uuid="d22d2f24-f56e-4704-b84a-66b03ec3b415"/>
+				<textFieldExpression><![CDATA[$F{produto.peso_liquido}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="33" y="256" width="200" height="50" uuid="efd5b768-df7f-4b7d-bf26-2262ccadc588"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128B" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{cod3}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

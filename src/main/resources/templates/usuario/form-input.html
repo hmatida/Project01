@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:replace="/fragments/fragment_1 :: head">
+</head>
+<body>
+<div th:replace="/fragments/fragment_1 :: menu">
+</div>
+<div class="container-fluid">
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+        Cadastro de usuário
+    </h3>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8" style="background-color: #f1f1f1; box-shadow: 3px 6px 10px 0px #909090;">
+            <form method="post" action="/usuario/save" th:object="${usuario}">
+                <div class="alert alert-success" th:text="${mensagem}"
+                     th:if="${not #strings.isEmpty(mensagem)}"></div>
+
+                <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+                    <div th:each="detailedError : ${#fields.detailedErrors()}">
+                        <span th:text="${detailedError.message}"></span>
+                    </div>
+                </div>
+                <div class="alert alert-danger" th:text="${erro}"
+                     th:if="${not #strings.isEmpty(erro)}"></div>
+                <div class="row">
+                    <div class="col-lg-6 form-group">
+                        <br/>
+                        <label for="exampleInputEmail1">Nome</label>
+                        <input type="text" class="form-control form-control-sm" id="nome_usuario"
+                               aria-describedby="emailHelp" required="required"
+                               placeholder="Nome completo"
+                               th:field="*{nome}" name="nome"/>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <br/>
+                        <label for="exampleInputEmail1">Login</label>
+                        <input type="text" class="form-control form-control-sm" id="login"
+                               aria-describedby="emailHelp" required="required"
+                               th:field="*{login}" name="login" placeholder="O login deve conter no mínimo 4 caracteres"
+                               title="O login deve conter no mínimo 4 caracter"
+                               min="4"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 form-group">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control form-control-sm" id="email"
+                               placeholder="Ex.: mail@mail.com"
+                               name="email"  required="required" th:field="*{email}"/>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 form-group">
+                        <label for="exampleInputEmail1">Senha</label>
+                        <input type="password" class="form-control form-control-sm" id="password_1"
+                               aria-describedby="emailHelp" required="required"
+                               placeholder="Mínimo 6 caracter com 1 número e 1 letra maiúscula e 1 minúscula"
+                               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$"
+                               title="A senha deve conter 1 número e 1 letra maiúscula"
+                               th:field="*{password}" name="password"/>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <label for="exampleInputEmail1">Confirme a senha</label>
+                        <input type="password" class="form-control form-control-sm" id="password_2"
+                               aria-describedby="emailHelp" required="required"
+                               placeholder="Repita a senha"/>
+                    </div>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary" id="formSave">Salvar</button>
+                <br/>
+                <br/>
+                <div class="col-lg-4">
+
+                </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            </form>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+</body>
+</html>

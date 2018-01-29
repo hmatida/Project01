@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:replace="/fragments/fragment_1 :: head">
+</head>
+<body>
+<div th:replace="/fragments/fragment_1 :: menu">
+</div>
+<div class="container">
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+        Detalhes da etiqueta
+    </h3>
+    <hr/>
+    <div class="alert alert-success" th:text="${mensagem}"
+         th:if="${not #strings.isEmpty(mensagem)}"></div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="card border-danger text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Dados da etiqueta</h5>
+                    <hr/>
+                    <label>Produto: <b><span th:text="${etqpro.produto.nome_produto}"></span></b></label> <br/>
+                    <label>Seq. caixa:  <b><span th:text="${etqpro.num_caixa}"></span></b></label><br/>
+                    <label>Lote:  <b><span th:text="${etqpro.lote}"></span></b></label><br/>
+                    <label>Fabricação: <b><span th:text="${etqpro.fab_string}"></span></b></label><br/>
+                    <label>Validade: <b><span th:text="${etqpro.val_string}"></span></b></label><br/>
+                    <label>Status: <b><span th:text="${etqpro.ativa}"></span></b></label><br/>
+                    <label>Data cancelamento: <b><span th:text="${#dates.format(etqpro.dtCancelamento, 'dd/MM/yyyy')}">
+                                            </span></b></label><br/>
+                    <label>Cancelado por: <b><span th:text="${etqpro.logUserCancelou}"></span></b></label>
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
+                            <label>Motivo cancelamento: <br/>
+                                <b><span th:text="${etqpro.motivoCancelamento}"></span></b></label><br/>
+                        </div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+        <div class="col-lg-8"></div>
+        <div class="col-lg-1">
+            <br/>
+            <button type="button" class="btn btn-secondary" onclick="window.close()">Cancelar</button>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+</body>
+</html>

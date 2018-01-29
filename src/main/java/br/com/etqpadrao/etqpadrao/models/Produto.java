@@ -1,9 +1,14 @@
 package br.com.etqpadrao.etqpadrao.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Calendar;
 import java.util.List;
 
 @Entity
@@ -15,16 +20,29 @@ public class Produto {
     @Column(name = "id_produto")
     private Long id;
 
+    @NotBlank
     private String nome_produto;
+
+    private String cod_produto;
+
+    @NotNull
     private double peso_liquido;
+
+    @NotNull
     private double peso_bruto;
     private double tara_embalagem;
     private double tara_caixa;
     private double tara_total;
+
+    @NotNull
     private long numero_caixa;
+
+    @NotNull
     private int validade;
     private String etq_layout;
+    private int qtd_prod_na_caixa;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name="id_cliente", referencedColumnName = "id_cliente")
     private Cliente cliente;
@@ -35,6 +53,12 @@ public class Produto {
 
     @OneToMany(mappedBy = "produto")
     private List<PassaDados> passaDados;
+
+    private String qmCadastrou;
+
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    private Calendar dtCadastro;
+
 
     public Long getId() {
         return id;
@@ -49,7 +73,9 @@ public class Produto {
     }
 
     public void setNome_produto(String nome_produto) {
-        this.nome_produto = nome_produto;
+
+        this.nome_produto = nome_produto.toUpperCase();
+        setDtCadastro();
     }
 
     public double getPeso_liquido() {
@@ -138,5 +164,42 @@ public class Produto {
 
     public void setEtq_layout(String etq_layout) {
         this.etq_layout = etq_layout;
+    }
+
+    public int getQtd_prod_na_caixa() {
+        return qtd_prod_na_caixa;
+    }
+
+    public void setQtd_prod_na_caixa(int qtd_prod_na_caixa) {
+        this.qtd_prod_na_caixa = qtd_prod_na_caixa;
+    }
+
+    public String getCod_produto() {
+        return cod_produto;
+    }
+
+    public void setCod_produto(String cod_produto) {
+        this.cod_produto = cod_produto.toUpperCase();
+    }
+
+    public String getQmCadastrou() {
+        return qmCadastrou;
+    }
+
+    public void setQmCadastrou(String qmCadastrou) {
+        this.qmCadastrou = qmCadastrou;
+    }
+
+    public Calendar getDtCadastro() {
+        return dtCadastro;
+    }
+
+    public void setDtCadastro(Calendar dtCadastro) {
+        this.dtCadastro = dtCadastro;
+    }
+
+    private void setDtCadastro(){
+        Calendar now = Calendar.getInstance();
+        this.dtCadastro=now;
     }
 }

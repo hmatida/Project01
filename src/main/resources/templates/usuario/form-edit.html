@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:replace="/fragments/fragment_1 :: head">
+</head>
+<body>
+<div th:replace="/fragments/fragment_1 :: menu">
+</div>
+<div class="container-fluid">
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+        Cadastro de usuário
+    </h3>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8" style="background-color: #f1f1f1; box-shadow: 3px 6px 10px 0px #909090;">
+            <form method="post" th:action="@{/usuario/edit-save/{id} (id=${usuario.id})}">
+                <div class="alert alert-success" th:text="${mensagem}"
+                     th:if="${not #strings.isEmpty(mensagem)}"></div>
+
+                <!--<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">-->
+                    <!--<div th:each="detailedError : ${#fields.detailedErrors()}">-->
+                        <!--<span th:text="${detailedError.message}"></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="alert alert-danger" th:text="${erro}"
+                     th:if="${not #strings.isEmpty(erro)}"></div>
+                <div class="row">
+                    <div class="col-lg-6 form-group">
+                        <br/>
+                        <label for="exampleInputEmail1">Nome</label>
+                        <input type="text" class="form-control form-control-sm" id="nome_usuario"
+                               aria-describedby="emailHelp" required="required" th:field="${usuario.nome}"
+                               name="nome"/>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <br/>
+                        <label for="exampleInputEmail1" hidden="hidden">Login</label>
+                        <input type="text" hidden="hidden" class="form-control form-control-sm" id="login"
+                               aria-describedby="emailHelp" required="required" th:field="${usuario.login}"
+                               name="login"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 form-group">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control form-control-sm" id="email"
+                               name="email"  required="required" th:field="${usuario.email}"/>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <label for="exampleInputEmail1">Nível usuário</label>
+                        <select class="form-control form-control-sm" id="produto" name="cat_usuario" th:field="${usuario.cat_usuario}">
+                            <option th:each="ni : ${nivel}" th:value="${ni.id}" th:text="${ni.nome}"/>
+                        </select>
+                    </div>
+                </div>
+                <div class="row" hidden="hidden">
+                    <div class="col-lg-6 form-group">
+                        <label for="exampleInputEmail1">Senha</label>
+                        <input type="password" class="form-control form-control-sm" id="password_1"
+                               aria-describedby="emailHelp" required="required"
+                               name="password" value="123456"/>
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <label for="exampleInputEmail1">Confirme a senha</label>
+                        <input type="password" class="form-control form-control-sm" id="password_2"
+                               aria-describedby="emailHelp" required="required"
+                               placeholder="Repita a senha" value="123456"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-2">
+                        <label for="exampleInputEmail1">Aprovado?</label>
+                        <select class="form-control form-control-sm" id="produto" name="aprovado" th:field="${usuario.aprovado}">
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-5"></div>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <br/>
+                <br/>
+                <div class="col-lg-4">
+
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+</body>
+</html>

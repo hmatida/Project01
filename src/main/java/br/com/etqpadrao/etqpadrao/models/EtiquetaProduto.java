@@ -21,12 +21,25 @@ public class EtiquetaProduto {
     private String cod3;
     private String fab_string;
     private String val_string;
+    private String ativa="Ativa";
+    private String motivoCancelamento;
+    private String logUserGerado;
+    private String logUserCancelou;
 
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar fabricacao;
 
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar validade;
+
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    private Calendar dtCancelamento;
+
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    private Calendar dtCancelamentoSupervisor;
+
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    private Calendar dtGeracao;
 
     @ManyToOne
     @JoinColumn(name="id_produto", referencedColumnName = "id_produto")
@@ -45,7 +58,9 @@ public class EtiquetaProduto {
     }
 
     public void setNum_caixa(long num_caixa) {
+
         this.num_caixa = num_caixa;
+        setDataGeracao();
     }
 
     public String getLote() {
@@ -133,5 +148,66 @@ public class EtiquetaProduto {
 
     public void setValidade(Calendar validade) {
         this.validade = validade;
+    }
+
+    public String getAtiva() {
+        return ativa;
+    }
+
+    public void setAtiva(String ativa) {
+        this.ativa = ativa;
+    }
+
+    public void inativaEtiqueta(){
+        this.ativa="Cancelada";
+    }
+
+    public String getMotivoCancelamento() {
+        return motivoCancelamento;
+    }
+
+    public void setMotivoCancelamento(String motivoCancelamento) {
+        this.motivoCancelamento = motivoCancelamento;
+    }
+
+    public Calendar getDtCancelamento() {
+        return dtCancelamento;
+    }
+
+    public void setDtCancelamento(Calendar dtCancelamento) {
+        this.dtCancelamento = dtCancelamento;
+    }
+
+    public Calendar getDtCancelamentoSupervisor() {
+        return dtCancelamentoSupervisor;
+    }
+
+    public void setDtCancelamentoSupervisor(Calendar dtCancelamentoSupervisor) {
+        this.dtCancelamentoSupervisor = dtCancelamentoSupervisor;
+    }
+
+    public String getLogUserGerado() {
+        return logUserGerado;
+    }
+
+    public void setLogUserGerado(String logUserGerado) {
+        this.logUserGerado = logUserGerado;
+    }
+
+    public Calendar getDtGeracao() {
+        return dtGeracao;
+    }
+
+    private void setDataGeracao(){
+        Calendar now = Calendar.getInstance();
+        this.dtGeracao = now;
+    }
+
+    public String getLogUserCancelou() {
+        return logUserCancelou;
+    }
+
+    public void setLogUserCancelou(String logUserCancelou) {
+        this.logUserCancelou = logUserCancelou;
     }
 }

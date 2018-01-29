@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:replace="/fragments/fragment_1 :: head">
+</head>
+<body>
+<div th:replace="/fragments/fragment_1 :: menu">
+</div>
+<div class="container-fluid">
+    <br/>
+    <br/>
+    <br/>
+    <h3>
+        Cadastro de categoria de usuário
+    </h3>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8" style="background-color: #f1f1f1; box-shadow: 3px 6px 10px 0px #909090;">
+            <form method="post" action="/usuario/save-cat" th:object="${catUsuario}">
+                <div class="alert alert-success" th:text="${mensagem}"
+                     th:if="${not #strings.isEmpty(mensagem)}"></div>
+
+                <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+                    <div th:each="detailedError : ${#fields.detailedErrors()}">
+                        <span th:text="${detailedError.message}"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <br/>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nome</label>
+                            <input type="text" class="form-control form-control-sm" id="nome_usuario"
+                                   aria-describedby="emailHelp" required="required"
+                                   th:field="*{nome}" name="nome"/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <br/>
+                <br/>
+                <div class="col-lg-4">
+
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+</body>
+</html>

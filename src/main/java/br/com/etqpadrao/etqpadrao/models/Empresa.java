@@ -1,6 +1,10 @@
 package br.com.etqpadrao.etqpadrao.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -12,11 +16,22 @@ public class Empresa {
     @Column(name = "id_empresa")
     private Long id;
 
-    private int cnpj;
+    @NotNull (message = "CNPJ não pode ficar em branco.")
+    @CNPJ
+    private String cnpj;
+
+    @NotBlank (message = "Razão social é obrigatório.")
     private String razao_social;
+
+    @NotBlank (message = "Nome fantasia é obrigatório.")
     private String nome_fantasia;
+    @NotBlank(message = "Endereço é obrigatório.")
     private String endereco;
+
+    @NotBlank(message = "Bairro é obrigatório.")
     private String bairro;
+
+    @NotNull (message = "Número é obrigatório.")
     private int numero;
     private String complemento;
     private int reg_processador;
@@ -32,11 +47,11 @@ public class Empresa {
         this.id = id;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -45,7 +60,7 @@ public class Empresa {
     }
 
     public void setRazao_social(String razao_social) {
-        this.razao_social = razao_social;
+        this.razao_social = razao_social.toUpperCase();
     }
 
     public String getNome_fantasia() {
@@ -53,7 +68,7 @@ public class Empresa {
     }
 
     public void setNome_fantasia(String nome_fantasia) {
-        this.nome_fantasia = nome_fantasia;
+        this.nome_fantasia = nome_fantasia.toUpperCase();
     }
 
     public String getEndereco() {
@@ -61,7 +76,7 @@ public class Empresa {
     }
 
     public void setEndereco(String endereco) {
-        this.endereco = endereco;
+        this.endereco = endereco.toUpperCase();
     }
 
     public String getBairro() {
@@ -69,7 +84,7 @@ public class Empresa {
     }
 
     public void setBairro(String bairro) {
-        this.bairro = bairro;
+        this.bairro = bairro.toUpperCase();
     }
 
     public int getNumero() {
@@ -85,7 +100,7 @@ public class Empresa {
     }
 
     public void setComplemento(String complemento) {
-        this.complemento = complemento;
+        this.complemento = complemento.toUpperCase();
     }
 
     public int getReg_processador() {

@@ -1,8 +1,11 @@
 package br.com.etqpadrao.etqpadrao.models;
 
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -14,10 +17,17 @@ public class Cliente {
     @Column(name = "id_cliente")
     private Long id;
 
+    @NotBlank(message = "Razão social não pode ficar em branco." )
     private String razao_social;
-    private int cnpj;
+
+    @CNPJ(message = "CNPJ é obrigatório.")
+    @NotNull(message = "CNPJ é obrigatório.")
+    private String cnpj;
+
+    @NotNull(message = "Nome fantasia é obrigatório.")
     private String nome_fantasia;
 
+    @NotNull(message = "Obrigatório a seleção de uma empresa.")
     @ManyToOne
     @JoinColumn(name="id_empresa", referencedColumnName = "id_empresa")
     private Empresa empresa;
@@ -38,14 +48,14 @@ public class Cliente {
     }
 
     public void setRazao_social(String razao_social) {
-        this.razao_social = razao_social;
+        this.razao_social = razao_social.toUpperCase();
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -54,7 +64,7 @@ public class Cliente {
     }
 
     public void setNome_fantasia(String nome_fantasia) {
-        this.nome_fantasia = nome_fantasia;
+        this.nome_fantasia = nome_fantasia.toUpperCase();
     }
 
     public Empresa getEmpresa() {

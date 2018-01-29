@@ -1,57 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <!--Bootstrap 4-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-          crossorigin="anonymous"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-            crossorigin="anonymous"></script>
-    <!--/Bootstrap 4-->
-
-    <title>Sistema de etiquetas</title>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head th:replace="/fragments/fragment_1 :: head">
 </head>
 <body>
-    <div class="container">
+<div th:replace="/fragments/fragment_1 :: menu">
+</div>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <br/>
+        <br/>
+        <br/>
         <div class="row">
-            <div clas="col-sm-12">
-                <div>
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Usuário</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp" placeholder="Digite seu login"/>
-                            <small id="emailHelp" class="form-text text-muted">Insira seu usuário.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Senha</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha"/>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input"/>
-                                Lembrar-me
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Entrar</button>
-                    </form>
+            <div class="col-lg-1">
+                <img th:src="@{/images/etq_3.jpg}" width="80"/>
+            </div>
+            <div class="col-lg-9">
+            <h3>
+                Sistema de impressão de etiquetas
+            </h3>
 
-                    <a href="/etiquetas/bompeixe_sato.html">
-                        <button type="submit" class="btn btn-primary">Relatório</button>
-                    </a>
-                </div>
+            <h4>
+                Seja bem vindo <span th:text="${user.nome}"></span>!
+            </h4>
+            </div>
+            <div class="col-lg-2">
+                <img class="img-responsive" th:src="@{/images/logo_mgsfoods.jpg}" width="150"/>
             </div>
         </div>
+        <hr/>
+        <span>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <h4>
+                    Produtos com etiquetas impressas
+                </h4>
+                <hr/>
+                <table id="tabela_etq" class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Código</th>
+                            <th>Peso líquido</th>
+                            <th>Peso bruto</th>
+                            <th>Qtd caixa gerada</th>
+                            <th>Data fabricação</th>
+                            <th>Data geração</th>
+                            <th>Gerada por</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each = "pro : ${produtos}">
+                            <td th:text="${pro.nomeProduto}"/>
+                            <td th:text="${pro.codigo}"/>
+                            <td th:text="${#numbers.formatDecimal(pro.peso_liquido,0, 3, 'COMMA')}+' kg'"/>
+                            <td th:text="${#numbers.formatDecimal(pro.peso_bruto, 0, 3, 'COMMA')+' kg'}"/>
+                            <td th:text="${pro.qtdCxGerada}"/>
+                            <td th:text="${#dates.format(pro.dtFabricacao, 'dd/MM/yyyy')}"> </td>
+                             <td th:text="${#dates.format(pro.dtLastEtiq, 'dd/MM/yyyy')}"> </td>
+                             <td th:text="${pro.geradoPor}"/>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </span>
     </div>
+</div>
 </body>
 </html>

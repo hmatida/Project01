@@ -11,6 +11,7 @@ public class Code3 {
     private String peso_liquido;
     private String lote;
     private String cx_seq;
+    private String qtd_emb_caixa;
 
     public String geraCodeBP(PassaDados passaDados){
         fabricacao= transf_for_string(passaDados.getDt_fabricacao());
@@ -22,6 +23,21 @@ public class Code3 {
         DataLote dataLote = new DataLote();
         lote=addZeros.adiciona(dataLote.geraLote(passaDados.getDt_fabricacao()),8);
         return fabricacao+validade+peso_liquido+lote+cx_seq;
+    }
+
+    /*
+    * Gera CODE3 para produto Bom Peixe 250g/ PAC131
+    * */
+    public String geraCodeBPPAC131(PassaDados passaDados){
+        fabricacao= transf_for_string(passaDados.getDt_fabricacao());
+        validade=transf_for_string(gera_validade(passaDados));
+        AddZeros addZeros = new AddZeros();
+        String taste=transfPeso1(passaDados.getProduto().getQtd_prod_na_caixa());
+        qtd_emb_caixa=addZeros.adiciona(taste, 6);
+        cx_seq=addZeros.adiciona(Long.toString(passaDados.getProduto().getNumero_caixa()), 8);
+        DataLote dataLote = new DataLote();
+        lote=addZeros.adiciona(dataLote.geraLote(passaDados.getDt_fabricacao()),8);
+        return fabricacao+validade+qtd_emb_caixa+lote+cx_seq;
     }
 
     /*
@@ -54,7 +70,7 @@ public class Code3 {
     }
     /*
      * Transforma variável peso líquido Double em uma String e a retorna
-     * Padrão Bom Peixe
+     * padrão Bom Peixe
      */
     private String transfPeso1(double valor){
         String variable = "";
