@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "cat_usuario")
@@ -20,8 +21,8 @@ public class CategoriaUsuario {
     @OneToMany(mappedBy = "cat_usuario")
     private List<Usuario> usuarios;
 
-    @ManyToMany (mappedBy = "categoriaUsuarios")
-    private List<Permissions> permissions;
+    @ManyToMany
+    private Set<Permissions> permissions;
 
     public Long getId() {
         return id;

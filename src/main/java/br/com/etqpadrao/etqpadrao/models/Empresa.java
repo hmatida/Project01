@@ -35,6 +35,8 @@ public class Empresa {
     private int numero;
     private String complemento;
     private int reg_processador;
+    private String gtin;
+    private String sscc;
 
     @OneToMany(mappedBy = "empresa")
     private List <Cliente> clientes;
@@ -117,5 +119,21 @@ public class Empresa {
 
     public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
+    }
+
+    public String getGtin() {
+        return gtin;
+    }
+
+    public void setGtin(String gtin) {
+        this.gtin = gtin;
+    }
+
+    public String getSscc() {
+        return sscc;
+    }
+
+    public void setSscc(String sscc) {
+        this.sscc = sscc;
     }
 }

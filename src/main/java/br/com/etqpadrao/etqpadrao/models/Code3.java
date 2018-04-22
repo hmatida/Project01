@@ -1,6 +1,7 @@
 package br.com.etqpadrao.etqpadrao.models;
 
 import br.com.etqpadrao.etqpadrao.controllers.AddZeros;
+import br.com.etqpadrao.etqpadrao.utilidades.DigitoVerificadorGs1;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Calendar;
@@ -12,6 +13,7 @@ public class Code3 {
     private String lote;
     private String cx_seq;
     private String qtd_emb_caixa;
+    private String sscc;
 
     public String geraCodeBP(PassaDados passaDados){
         fabricacao= transf_for_string(passaDados.getDt_fabricacao());
@@ -79,5 +81,15 @@ public class Code3 {
             int temp = (int) valor2;
             variable= Integer.toString(temp);
             return variable;
+    }
+
+    public String geraCod3Qualita(PassaDados passaDados){
+        this.sscc=passaDados.getProduto().getCliente().getEmpresa().getSscc();
+        AddZeros addZeros = new AddZeros();
+        String qtdCaixas = addZeros.adiciona(Long.toString(passaDados.getProduto().getNumero_caixa()), 12);
+        String code = this.sscc+qtdCaixas;
+        DigitoVerificadorGs1 digitoGs1 = new DigitoVerificadorGs1();
+        String digito = digitoGs1.getDigito(code);
+        return code+digito;
     }
 }

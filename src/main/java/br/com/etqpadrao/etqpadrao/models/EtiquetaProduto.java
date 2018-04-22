@@ -25,6 +25,7 @@ public class EtiquetaProduto {
     private String motivoCancelamento;
     private String logUserGerado;
     private String logUserCancelou;
+    private String sscc;
 
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Calendar fabricacao;
@@ -209,5 +210,13 @@ public class EtiquetaProduto {
 
     public void setLogUserCancelou(String logUserCancelou) {
         this.logUserCancelou = logUserCancelou;
+    }
+
+    public String getSscc() {
+        return sscc;
+    }
+
+    public void setSscc(String sscc) {
+        this.sscc = sscc;
     }
 }

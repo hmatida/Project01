@@ -1,8 +1,3 @@
- $(document).ready(function () {
-        var $seuCampoCpf = $("#cnpj");
-        $seuCampoCpf.mask("99.999.999/9999-99");
-    });
-
 $(document).ready(function(index, element){
        $("#tabela_etq tbody tr #status").each(function(){
            var valor = $(this).text();

@@ -49,7 +49,7 @@ public class GeraEtiquetaController {
              * Esse método abaixo ainda precisa verificar o nível de permissão do usuário
              * para que o usuário supervisor ou acima, possa gerar mais etiquetas.*/
         } else if( veriricaSeFoiGeradaEtiquetaAntes(passaDados)== true){
-            attributes.addFlashAttribute("erro", "Já foram geradas etiquetas com data posterior a essa fabricação. Não é possível erar etiqueta com data retroativa.");
+            attributes.addFlashAttribute("erro", "Já foram geradas etiquetas com data posterior a essa fabricação. Não é possível gerar etiqueta com data retroativa.");
             return modelAndView;
         }
 
@@ -142,9 +142,63 @@ public class GeraEtiquetaController {
                     etiquetaProdutoRepo.save(etiquetaProduto);
                 }
                 attributes.addFlashAttribute("mensagem", "Etiquetas geradas com sucesso.");
-            } else {
-                attributes.addFlashAttribute("erro", "Não foi encontrado layout padrão de etiqueta para esse produto.");
-            }
+            } else if(pro.getCod_produto().equals("PAC224")){
+                for (int i =0; i< passaDados.getNum_caixas(); i++){
+                    EtiquetaProduto etiquetaProduto = new EtiquetaProduto();
+
+                    //Seta data de fabricação em etiquetaProduto
+                    etiquetaProduto.setFabricacao(passaDados.getDt_fabricacao());
+
+                    //Seta data de vencimento do produto em etiquetaProduto
+                    Calendar venci = Calendar.getInstance();
+                    venci.set(passaDados.getDt_fabricacao().get(Calendar.YEAR),
+                            passaDados.getDt_fabricacao().get(Calendar.MONTH),
+                            passaDados.getDt_fabricacao().get(Calendar.DAY_OF_MONTH));
+                    venci.add(Calendar.MONTH, passaDados.getProduto().getValidade());
+                    etiquetaProduto.setValidade(venci);
+
+                    //Seta produto na etiqueta
+                    etiquetaProduto.setProduto(pro);
+
+                    //Seta lote
+                    DataLote dataLote = new DataLote();
+                    etiquetaProduto.setLote(dataLote.geraLote(passaDados.getDt_fabricacao()));
+
+                    //Atualiza o número de caixas cujas etiquetas foram geradas e as salva no banco
+                    pro.setNumero_caixa(pro.getNumero_caixa() + 1);
+                    etiquetaProduto.setNum_caixa(pro.getNumero_caixa());
+                    produtoRepo.save(pro);
+
+                    //Seta COD1
+                    Code1 code1 = new Code1();
+                    etiquetaProduto.setCod1(code1.geraCodQualita(passaDados));
+
+                    //Seta COD2
+                    Code2 code2 = new Code2();
+                    etiquetaProduto.setCod2(code2.geraCod2Qualita(passaDados));
+
+
+                    //Seta COD3
+                    Code3 code3 = new Code3();
+                    etiquetaProduto.setCod3("(00)"+code3.geraCod3Qualita(passaDados));
+
+                    //Seta SSCC
+                    etiquetaProduto.setSscc(code3.geraCod3Qualita(passaDados));
+
+                    //Seta
+                    etiquetaProduto.setFab_string(passaDados.getDt_fabricacao());
+                    etiquetaProduto.setVal_string(etiquetaProduto.getValidade());
+
+                    //Seta usuário que gerou
+                    etiquetaProduto.setLogUserGerado(userLog.getLogin());
+                    etiquetaProdutoRepo.save(etiquetaProduto);
+                }
+                attributes.addFlashAttribute("mensagem", "Etiquetas geradas com sucesso.");
+
+
+        } else {
+            attributes.addFlashAttribute("erro", "Não foi encontrado layout padrão de etiqueta para esse produto.");
+        }
             return modelAndView;
         }
     }

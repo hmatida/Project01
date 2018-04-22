@@ -29,7 +29,8 @@ public class ProdutoController {
 
     //Local onde o método irá salvar o arquivo do layout da etiquata em iReport.
     private final String LOCAL_SALVAMENTO =
-            "C:\\Users\\lineh\\Documents\\Projetos em Andamento\\etqpadrao\\Project01\\src\\main\\resources\\report\\";
+            //"C:\\Users\\lineh\\Documents\\Projetos em Andamento\\etqpadrao\\Project01\\reports"; //Windows para testes.
+            "/usr/local/tomcat/webapps/ROOT/WEB-INF/classes/report/";
 
     @Autowired
     private ProdutoRepo produtoRepo;

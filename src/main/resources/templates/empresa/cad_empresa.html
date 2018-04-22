@@ -92,6 +92,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Código GTIN</label>
+                                <input type="text" class="form-control" id="gtin" th:field="*{gtin}"/>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>SSCC - Código de Série da Unidade Logística</label>
+                                <input type="text" class="form-control" id="sscc" placeholder="Somente números..."
+                                       th:field="*{sscc}"/>
+                            </div>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                     <br/>
                     <br/>

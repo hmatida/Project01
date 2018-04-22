@@ -200,4 +200,13 @@ public class EtiquetasController {
 
         return modelAndView;
     }
+
+    private void printEmConsole(List<EtiquetaProduto> etiquetaProdutos){
+        for (int i = 0; i<etiquetaProdutos.size(); i++){
+            System.out.println(etiquetaProdutos.get(i).getCod1());
+            System.out.println(etiquetaProdutos.get(i).getCod2());
+            System.out.println(etiquetaProdutos.get(i).getCod3());
+            System.out.println("_______________________________________");
+        }
+    }
 }
