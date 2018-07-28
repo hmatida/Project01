@@ -9,7 +9,7 @@ public class Code2 {
         DataLote dtL = new DataLote();
         this.lote=dtL.geraLote(passaDados.getDt_fabricacao());
         number= passaDados.getProduto().getCliente().getEmpresa().getReg_processador();
-        return "(7030)"+number.toString()+
+        return "(7030)0"+number.toString()+
                     "(10)"+"00"+this.lote;
     }
 }

@@ -32,9 +32,13 @@ public class Code1 {
         Integer monthInt=date.get(Calendar.MONTH)+1;
         Integer dayInt=date.get(Calendar.DAY_OF_MONTH);
         String month=monthInt.toString();
+        String day=dayInt.toString();
         if(month.length()<2){
             month="0"+month;
         }
-        return dayInt.toString()+month+anoInt.toString();
+        if(day.length()<2){
+            day="0"+day;
+        }
+        return day+month+anoInt.toString();
     }
 }
