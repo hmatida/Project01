@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-8" style="background-color: #f1f1f1; box-shadow: 3px 6px 10px 0px #909090;">
-                <form method="post" action="/empresa" th:object="${empresa}">
+                <form method="post" th:action="@{/empresa}" th:object="${empresa}">
                     <div class="alert alert-success" th:text="${mensagem}"
                          th:if="${not #strings.isEmpty(mensagem)}"></div>
 

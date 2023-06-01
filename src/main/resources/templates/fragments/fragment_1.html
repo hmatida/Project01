@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 >
 <head th:fragment="head">
     <meta charset="UTF-8"/>
 
+    <!--Bootstrap 4-->
     <!--Bootstrap 4-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
@@ -19,13 +20,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
             integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
             crossorigin="anonymous"></script>
+    <!--/Bootstrap 4-->
 
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
-    <script type="text/javascript"
-            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
-
-    <script th:src="@{/js/scripts.js}"></script>
 
     <link th:href="@{/css/dvs.css}" rel="stylesheet"/>
     <link th:href="@{/css/personal.css}" rel="stylesheet"/>
@@ -38,7 +34,7 @@
 </head>
 <body th:fragment="menu">
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Início</a>
+    <a class="navbar-brand" th:href="@{/}">Início</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -48,9 +44,9 @@
             <li sec:authorize="hasRole('3')" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Usuário</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/usuario/form-input">Cadastro</a>
-                    <a class="dropdown-item" href="/usuario/cad-cat-usuario">Cadastro função</a>
-                    <a class="dropdown-item" href="/usuario/list-user">Manutenção de usuário</a>
+                    <a class="dropdown-item" th:href="@{/usuario/form-input}">Cadastro</a>
+                    <a class="dropdown-item" th:href="@{/usuario/cad-cat-usuario}">Cadastro função</a>
+                    <a class="dropdown-item" th:href="@{/usuario/list-user}">Manutenção de usuário</a>
                     <!--<div class="dropdown-divider"></div>-->
                     <!--<a class="dropdown-item" href="#">Separated link</a>-->
                 </div>
@@ -58,7 +54,7 @@
             <li sec:authorize="hasRole('3')" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Empresa</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/empresa/form-input">Cadastro</a>
+                    <a class="dropdown-item" th:href="@{/empresa/form-input}">Cadastro</a>
                     <!--<a class="dropdown-item" href="#">Another action</a>-->
                     <!--<a class="dropdown-item" href="#">Something else here</a>-->
                     <!--<div class="dropdown-divider"></div>-->
@@ -68,33 +64,33 @@
             <li sec:authorize="hasRole('3')" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Cliente</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/cliente/form-input">Cadastro</a>
-                    <a class="dropdown-item" href="/cliente/list">Listar</a>
+                    <a class="dropdown-item" th:href="@{/cliente/form-input}">Cadastro</a>
+                    <a class="dropdown-item" th:href="@{/cliente/list}">Listar</a>
                 </div>
             </li>
             <li sec:authorize="hasRole('2')" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Produto</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/produto/form-input">Cadastro</a>
-                    <a class="dropdown-item" href="/produto/list">Listar</a>
+                    <a class="dropdown-item" th:href="@{/produto/form-input}">Cadastro</a>
+                    <a class="dropdown-item" th:href="@{/produto/list}">Listar</a>
                 </div>
             </li>
             <li sec:authorize="hasRole('1')" class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Etiqueta</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/etiqueta/form-input">Gerar etiqueta</a>
+                    <a class="dropdown-item" th:href="@{/etiqueta/form-input}">Gerar etiqueta</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/etiquetas/filtros">Imprime por lote</a>
-                    <a class="dropdown-item" href="/etiquetas/list">Lista etiquetas</a>
+                    <a class="dropdown-item" th:href="@{/etiquetas/filtros}">Imprime por lote</a>
+                    <a class="dropdown-item" th:href="@{/etiquetas/list}">Lista etiquetas</a>
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="/logout" method="post">
-            <button type="submit"  class="btn btn-outline-info btn-block">
-                <span class="glyphicon glyphicon-log-out">Sair</span>
-            </button>
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        </form>
+            <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-outline-info btn-block">
+                    Sair
+                </button>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            </form>
     </div>
 </nav>
 </body>
